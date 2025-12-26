@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    /* Subtle dot grid background */
+    background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-md border border-slate-200/50 shadow-sm;
+  }
+  
+  .btn-primary {
+    @apply bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium 
+           hover:bg-indigo-700 transition-all shadow-md shadow-indigo-100 
+           active:scale-95 disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-slate-700 border border-slate-200 px-4 py-2 
+           rounded-lg font-medium hover:bg-slate-50 transition-all active:scale-95;
+  }
+}
