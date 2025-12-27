@@ -1,8 +1,38 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react';
+import { ethers } from 'ethers';
 
-export const WalletContext = createContext(null)
+const WalletContext = createContext();
 
-export function WalletProvider({children}){
-  const [address,setAddress] = useState(null)
-  return <WalletContext.Provider value={{address,setAddress}}>{children}</WalletContext.Provider>
-}
+export const WalletProvider = ({ children }) => {
+  const [account, setAccount] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [isConnecting, setIsConnecting] = useState(false);
+
+  const connectWallet = async () => {
+    if (!window.ethereum) return alert("MetaMask not found!");
+    try {
+      setIsConnecting(true);
+      const _provider = new ethers.BrowserProvider(window.ethereum);
+      const accounts = await _provider.send("eth_requestAccounts", []);
+      setAccount(accounts[0]);
+      setProvider(_provider);
+    } catch (error) {
+      console.error("Connection rejected");
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  const disconnectWallet = () => {
+    setAccount(null);
+    setProvider(null);
+  };
+
+  return (
+    <WalletContext.Provider value={{ account, provider, connectWallet, disconnectWallet, isConnecting }}>
+      {children}
+    </WalletContext.Provider>
+  );
+};
+
+export const useWallet = () => useContext(WalletContext);

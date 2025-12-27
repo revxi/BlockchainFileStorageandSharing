@@ -1,10 +1,24 @@
-import api from './api'
+import api from './api';
 
-export async function login(credentials){
-  // stub
-  return { data: { user: { id:1, name:'Demo' } } }
-}
+export const authService = {
+  login: async (credentials) => {
+    const { data } = await api.post('/auth/login', credentials);
+    if (data.token) localStorage.setItem('token', data.token);
+    return data;
+  },
 
-export async function register(data){
-  return { data: { user: { id:2, name:'New' } } }
-}
+  register: async (userData) => {
+    const { data } = await api.post('/auth/register', userData);
+    return data;
+  },
+
+  verifyWallet: async (address, signature) => {
+    const { data } = await api.post('/auth/verify-wallet', { address, signature });
+    if (data.token) localStorage.setItem('token', data.token);
+    return data;
+  },
+
+  logout: () => {
+    localStorage.removeItem('token');
+  }
+};

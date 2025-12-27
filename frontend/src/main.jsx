@@ -1,12 +1,21 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
 
-const container = document.getElementById('root')
-const root = createRoot(container)
-root.render(
+// Context Providers
+import { WalletProvider } from './context/WalletContext';
+import { AuthProvider } from './context/AuthContext';
+import { FileProvider } from './context/FileContext';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <WalletProvider>
+      <AuthProvider>
+        <FileProvider>
+          <App />
+        </FileProvider>
+      </AuthProvider>
+    </WalletProvider>
   </React.StrictMode>
-)
+);

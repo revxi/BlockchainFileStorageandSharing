@@ -1,10 +1,24 @@
-import api from './api'
+import api from './api';
 
-export async function uploadFile(formData, onProgress){
-  // stub: implement upload with axios
-  return { data: { id: Date.now() } }
-}
+export const fileService = {
+  getAllFiles: async () => {
+    const { data } = await api.get('/files');
+    return data;
+  },
 
-export async function listFiles(){
-  return { data: [] }
-}
+  getRecentFiles: async () => {
+    const { data } = await api.get('/files/recent');
+    return data;
+  },
+
+  deleteFile: async (fileId) => {
+    const { data } = await api.delete(`/files/${fileId}`);
+    return data;
+  },
+
+  // Updates the DB after IPFS upload and Blockchain tx is successful
+  saveMetadata: async (metadata) => {
+    const { data } = await api.post('/files/metadata', metadata);
+    return data;
+  }
+};

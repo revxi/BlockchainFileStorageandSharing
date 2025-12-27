@@ -1,8 +1,9 @@
 /**
- * Shortens a wallet address or transaction hash
- * Example: 0x1234567890abcdef1234567890abcdef12345678 -> 0x1234...5678
+ * Shortens a blockchain hash or address for UI display.
+ * @param {string} hash 
+ * @param {number} chars - number of characters to show at start/end
  */
-export const shortenHash = (hash) => {
-  if (!hash) return "";
-  return `${hash.substring(0, 6)}...${hash.substring(hash.length - 4)}`;
+export const shortenHash = (hash, chars = 4) => {
+  if (!hash) return '';
+  return `${hash.substring(0, chars + 2)}...${hash.substring(hash.length - chars)}`;
 };
