@@ -4,25 +4,35 @@
 
 @layer base {
   body {
-    @apply bg-[#F8FAFC] text-slate-900 antialiased; /* Snow background */
+    /* Using standard properties for better IDE compatibility */
+    background-color: #F8FAFC;
+    @apply text-slate-900 antialiased;
     font-family: 'Inter', system-ui, sans-serif;
   }
 }
 
 @layer components {
-  /* Custom thin scrollbar for a premium feel */
+  /* Custom thin scrollbar - Cleaned up to avoid linter errors */
   ::-webkit-scrollbar {
-    @apply w-1.5;
+    width: 6px; 
   }
+  
   ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+    background: transparent;
   }
+  
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+    @apply bg-slate-200 rounded-full;
   }
-}
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-300;
+  }
 
-/* Glassmorphism utility */
-.glass {
-  @apply bg-white/70 backdrop-blur-md border border-white/20;
+  /* Enhanced Glassmorphism utility 
+     Added 'bg-clip-padding' to prevent border overlap 
+  */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 bg-clip-padding shadow-sm;
+  }
 }
