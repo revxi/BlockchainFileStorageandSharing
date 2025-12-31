@@ -72,9 +72,9 @@ Create a .env file in the root directory and add your keys:
     npx hardhat run scripts/deploy.js --network <your-network>
    ```
 6. Run the Application
-```
-    npm run dev
 
+   ``` 
+   npm run dev
 ## 🖥️ How it Works
 Upload: When a user selects a file, it is sent to IPFS.
 
