@@ -50,21 +50,31 @@ Wallet,MetaMask
 
 ## 🔧 Installation & Setup
 1. Clone the Repository
-   git clone [https://github.com/revxi/BlockchainFileStorageandSharing.git](https://github.com/revxi/BlockchainFileStorageandSharing.git)
+```
+ git clone [https://github.com/revxi/BlockchainFileStorageandSharing.git](https://github.com/revxi/BlockchainFileStorageandSharing.git)
 cd BlockchainFileStorageandSharing
+```
 2. Install Dependencies
-   npm install
-3. Environment Configuration
+```
+npm install
+```
+4. Environment Configuration
 Create a .env file in the root directory and add your keys:
+    ```
     PRIVATE_KEY=your_metamask_private_key
-RPC_URL=your_rpc_endpoint_url
-PINATA_API_KEY=your_pinata_api_key
-PINATA_SECRET_KEY=your_pinata_secret_key
-4. Smart Contract Deploymen
-   npx hardhat compile
-npx hardhat run scripts/deploy.js --network <your-network>
-5. Run the Application
-   npm run dev
+    RPC_URL=your_rpc_endpoint_url
+    PINATA_API_KEY=your_pinata_api_key
+    PINATA_SECRET_KEY=your_pinata_secret_key
+`
+5. Smart Contract Deploymen
+  ```
+     npx hardhat compile
+    npx hardhat run scripts/deploy.js --network <your-network>
+   ```
+6. Run the Application
+```
+    npm run dev
+
 ## 🖥️ How it Works
 Upload: When a user selects a file, it is sent to IPFS.
 
